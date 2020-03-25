@@ -1,0 +1,27 @@
+version: '3.1'
+services:
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysqldb
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: catalog
+
+  vault:
+    image: vault
+    container_name: vault
+    restart: always
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - './vault-config/config:/config'
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
+      VAULT_ADDR: 'http://0.0.0.0:8200'
+      VAULT_TOKEN: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
+    
+    #entrypoint: vault server -dev -config=/config/vault.json
+    ports:
+      - "8200:8200"
