@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.6'
 services:
   mysqldb:
     image: mysql:5.7
@@ -9,10 +9,9 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: catalog
 
-  vault:
+  vault2:
     image: vault
     container_name: vault
-    restart: always
     cap_add:
       - IPC_LOCK
     volumes:
@@ -21,7 +20,8 @@ services:
       VAULT_DEV_ROOT_TOKEN_ID: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
       VAULT_ADDR: 'http://0.0.0.0:8200'
       VAULT_TOKEN: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
-    
-    #entrypoint: vault server -dev -config=/config/vault.json
+      VAULT_DEV_TOKEN: 934f9eae-31ff-a8ef-e1ca-4bea9e07aa09
     ports:
       - "8200:8200"
+    command: ['config/vault-init.sh']
+      
