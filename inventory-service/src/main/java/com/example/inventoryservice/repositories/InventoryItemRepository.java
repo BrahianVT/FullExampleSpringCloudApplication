@@ -9,5 +9,4 @@ import java.util.Optional;
 @Repository
 public interface InventoryItemRepository extends JpaRepository<InventoryItem,Long> {
     Optional<InventoryItem> findByProductCode(String productCode);
-
 }

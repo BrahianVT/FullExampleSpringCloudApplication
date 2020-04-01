@@ -9,12 +9,13 @@ import javax.persistence.*;
 @Entity
 @Table(name="inventory")
 public class InventoryItem {
+    @Column(name = "id_inventory")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idInventory;
     @Column(name = "product_code", nullable = false, unique = true)
     private String productCode;
     @Column(name = "quantity")
-    private Integer availableQuantity=0;
+    private Integer availableQuantity;
 
 }
