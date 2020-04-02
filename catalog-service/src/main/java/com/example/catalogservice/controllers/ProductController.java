@@ -5,12 +5,13 @@ import com.example.catalogservice.services.ProductServiceInterface;
 import com.example.catalogservice.util.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/products")
@@ -22,14 +23,82 @@ public class ProductController {
     public ProductController(ProductServiceInterface productService){
         this.productService = productService;
     }
-    @GetMapping("")
-    public List<Product> allProducts(){
-        return productService.findAllProducts();
+
+    @GetMapping("findAllProducts")
+    public ResponseEntity<List<Product>> allProducts(){
+        log.info("Finding information for all products");
+        List<Product> findProducts = productService.findAllProducts();
+        if(findProducts== null && findProducts.size() == 0)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<List<Product>>(findProducts, HttpStatus.OK);
     }
 
-    @GetMapping("/{code}")
-    public Product productByCode(@PathVariable String code) throws Exception {
-        return productService.findProductByCode(code)
-                .orElseThrow(() -> new ProductNotFoundException("Product with code " +code+ "not found"));
+    @GetMapping("findProductByCode/{code}")
+    public ResponseEntity<Product> productByCode(@PathVariable String code) throws Exception {
+        log.info("Finding information for product with code" + code);
+        Optional<Product> productByCode = productService.findProductByCode(code);
+        if(!productByCode.isPresent())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<>(productByCode.get(),HttpStatus.OK);
     }
+
+    @GetMapping("findProductByName/{productName}")
+    public ResponseEntity<List<Product>> findProductByName(@PathVariable String productName){
+        log.info("looking for Products quering by name");
+        List<Product> listProduct = productService.findProductByName(productName);
+
+        if(listProduct != null && listProduct.size() < 1)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<List<Product>>(listProduct, HttpStatus.OK);
+    }
+
+    @GetMapping("findProductByDescription/{description}")
+    public ResponseEntity<List<Product>> findProductsByDescription(@PathVariable String description){
+        log.info("looking for Products quering by description");
+        List<Product> listProductByDesc = productService.findProductByDescription(description);
+
+        if(listProductByDesc != null && listProductByDesc.size() < 1)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<List<Product>>(listProductByDesc,HttpStatus.OK);
+    }
+
+    @PostMapping("saveProduct")
+    public ResponseEntity<Product> saveProduct(@RequestBody Product product){
+        log.info("Save a new Product...");
+
+        Product savedProduct = productService.saveOrUpdateProduct(product);
+
+        if(savedProduct == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return  new ResponseEntity<Product>(savedProduct, HttpStatus.OK);
+    }
+    @PutMapping("updateProduct")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product updateProduct){
+        log.info("Update product with  id " + updateProduct);
+
+        Product updatedProduct = productService.saveOrUpdateProduct(updateProduct);
+        if(updatedProduct == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        else
+            return new ResponseEntity<Product>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("deleteProduct/{idProduct}")
+    public ResponseEntity deleteProduct(@PathVariable Long idProduct){
+        log.info("Delete product with id " + idProduct);
+
+        if(!productService.findByIdProduct(idProduct).isPresent()){
+            log.info("Product with id :" + idProduct);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else
+            return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
 }

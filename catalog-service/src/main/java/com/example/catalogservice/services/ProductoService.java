@@ -43,7 +43,7 @@ public class ProductoService implements ProductServiceInterface {
         if(productOptional.isPresent()){
             System.out.println("Feching inventory data");
             ResponseEntity<ProductInventoryResponse> itemResponseEntity =
-                    restTemplate.getForEntity("http://inventory-service/api/inventory/{code}",
+                    restTemplate.getForEntity("http://inventory-service/api/inventory/findByProductCode/{code}",
                             ProductInventoryResponse.class,code);
             if(itemResponseEntity.getStatusCode() == HttpStatus.OK){
                 Integer quantity = itemResponseEntity.getBody().getAvailableQuantity();
@@ -58,5 +58,30 @@ public class ProductoService implements ProductServiceInterface {
         log.info("After CorrelationID: " + MyThreadLocalHolder.getCorrelationId());
 
       return productOptional;
+    }
+
+    @Override
+    public List<Product> findProductByName(String name) {
+        return productRepository.findByName(name);
+    }
+
+    @Override
+    public List<Product> findProductByDescription(String name) {
+        return productRepository.findByDescription(name);
+    }
+
+    @Override
+    public Product saveOrUpdateProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Optional<Product> findByIdProduct(Long id) {
+        return productRepository.findById(id);
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
     }
 }
