@@ -48,7 +48,7 @@ public class InventoryItemControllerTest {
     private InventoryItem inventoryItem;
 
     @Before
-    public  void setup(){
+    public  void setupInventoryItem() {
         inventoryItem = new InventoryItem();
         inventoryItem.setIdInventory((long) 1);
         inventoryItem.setProductCode("P001");
