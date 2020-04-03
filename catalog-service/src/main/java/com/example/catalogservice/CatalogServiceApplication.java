@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableCircuitBreaker
+
 public class CatalogServiceApplication {
 
 	public static void main(String[] args) {

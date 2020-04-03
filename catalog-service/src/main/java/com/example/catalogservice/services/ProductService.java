@@ -1,6 +1,8 @@
 package com.example.catalogservice.services;
 
+import com.example.catalogservice.dao.ProductInventoryDao;
 import com.example.catalogservice.entities.Product;
+import com.example.catalogservice.feignClients.InventoryRestClient;
 import com.example.catalogservice.repositories.ProductRepository;
 import com.example.catalogservice.util.MyThreadLocalHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +20,15 @@ import java.util.UUID;
 @Service
 @Transactional
 @Slf4j
-public class ProductoService implements ProductServiceInterface {
+public class ProductService implements ProductServiceInterface {
   private final ProductRepository productRepository;
-  private final RestTemplate restTemplate;
 
   @Autowired
-  public ProductoService(ProductRepository productRepository, RestTemplate restTemplate){
+  InventoryRestClient inventoryRestClient;
+
+  @Autowired
+  public ProductService(ProductRepository productRepository){
       this.productRepository = productRepository;
-      this.restTemplate = restTemplate;
   }
 
     @Override
@@ -35,28 +38,16 @@ public class ProductoService implements ProductServiceInterface {
 
     @Override
     public Optional<Product> findProductByCode(String code) {
-      String correlationId = UUID.randomUUID().toString();
-      MyThreadLocalHolder.setCorrelationId(correlationId);
-      log.info("Before CorrelationID: "+ MyThreadLocalHolder.getCorrelationId());
-
       Optional<Product> productOptional = productRepository.findByCode(code);
-        if(productOptional.isPresent()){
-            System.out.println("Feching inventory data");
-            ResponseEntity<ProductInventoryResponse> itemResponseEntity =
-                    restTemplate.getForEntity("http://inventory-service/api/inventory/findByProductCode/{code}",
-                            ProductInventoryResponse.class,code);
-            if(itemResponseEntity.getStatusCode() == HttpStatus.OK){
-                Integer quantity = itemResponseEntity.getBody().getAvailableQuantity();
-                System.out.println("Available quantity: " + quantity);
-                productOptional.get().setInStock(quantity > 0);
-            } else {
-                System.out.println("Unable to get inventory level for product_code: "+ code +
-                        ", StatusCode: "+ itemResponseEntity.getStatusCode());
-                productOptional.get().setInStock(false);
-            }
-        }
-        log.info("After CorrelationID: " + MyThreadLocalHolder.getCorrelationId());
 
+      if(productOptional.isPresent()){
+            ProductInventoryDao productInventory = inventoryRestClient.getProductInventory(code);
+            if(productInventory.getAvailableQuantity() != -1){
+                productOptional.get().setInStock(true);
+                productOptional.get().setQuantity(productInventory.getAvailableQuantity());
+            }
+
+      }
       return productOptional;
     }
 
