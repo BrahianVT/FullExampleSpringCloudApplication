@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: catalog
 
-  vault2:
+  vault:
     image: vault
     container_name: vault
     cap_add:
@@ -24,4 +24,14 @@ services:
     ports:
       - "8200:8200"
     command: ['config/vault-init.sh']
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    environment:
+      STORAGE_TYPE: mem
+    ports:
+      - "9411:9411"
+  
+  
       
