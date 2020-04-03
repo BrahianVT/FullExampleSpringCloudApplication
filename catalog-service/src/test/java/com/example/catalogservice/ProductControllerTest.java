@@ -2,6 +2,7 @@ package com.example.catalogservice;
 
 import com.example.catalogservice.controllers.ProductController;
 import com.example.catalogservice.entities.Product;
+
 import com.example.catalogservice.services.ProductServiceInterface;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -38,7 +39,6 @@ public class ProductControllerTest {
 
     @MockBean
     private ProductServiceInterface productService;
-
     @Autowired
     ObjectMapper objectMapper;
 

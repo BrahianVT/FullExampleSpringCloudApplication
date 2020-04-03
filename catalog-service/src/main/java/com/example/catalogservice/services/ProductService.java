@@ -4,18 +4,15 @@ import com.example.catalogservice.dao.ProductInventoryDao;
 import com.example.catalogservice.entities.Product;
 import com.example.catalogservice.feignClients.InventoryRestClient;
 import com.example.catalogservice.repositories.ProductRepository;
-import com.example.catalogservice.util.MyThreadLocalHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @Transactional
@@ -41,13 +38,14 @@ public class ProductService implements ProductServiceInterface {
       Optional<Product> productOptional = productRepository.findByCode(code);
 
       if(productOptional.isPresent()){
-            ProductInventoryDao productInventory = inventoryRestClient.getProductInventory(code);
-            if(productInventory.getAvailableQuantity() != -1){
+          log.info("Consuming inventory service...");
+            ResponseEntity<ProductInventoryDao> productInventory = inventoryRestClient.getProductInventory(code);
+            if(productInventory.getStatusCode() == HttpStatus.OK && productInventory.getBody().getAvailableQuantity() != -1){
                 productOptional.get().setInStock(true);
-                productOptional.get().setQuantity(productInventory.getAvailableQuantity());
-            }
-
+                productOptional.get().setQuantity(productInventory.getBody().getAvailableQuantity());
+            } else productOptional.get().setQuantity(0);
       }
+
       return productOptional;
     }
 

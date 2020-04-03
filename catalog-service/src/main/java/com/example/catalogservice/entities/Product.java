@@ -20,5 +20,7 @@ public class Product {
     private double price;
 
     @Transient
-    private boolean inStock = true;
+    private boolean inStock;
+    @Transient
+    private Integer quantity = 0;
 }

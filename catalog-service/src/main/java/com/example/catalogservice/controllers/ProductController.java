@@ -2,14 +2,12 @@ package com.example.catalogservice.controllers;
 
 import com.example.catalogservice.entities.Product;
 import com.example.catalogservice.services.ProductServiceInterface;
-import com.example.catalogservice.util.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
 import java.util.Optional;
 

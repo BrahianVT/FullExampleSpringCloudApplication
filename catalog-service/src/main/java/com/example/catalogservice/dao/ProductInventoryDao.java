@@ -1,9 +1,9 @@
-package com.example.catalogservice.services;
+package com.example.catalogservice.dao;
 
 import lombok.Data;
 
 @Data
-public class ProductInventoryResponse {
+public class ProductInventoryDao {
     private String productCode;
     private int availableQuantity;
 }
