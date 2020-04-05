@@ -37,7 +37,7 @@ Then afterwards import all the projects you will end up with the following compo
 
 * api-gateway - The component that will route the incoming requests to microservices
 * catalog-service -Component that will store data in the MySql database.
-* config-service - The component stores almost all the components configurations.
+* config-service - The component stores almost all the component configurations.
 * hystrix-dashboard - Create a dashboard where you will be able to visualize metrics about each HystrixCommand.
 * inventory-service - Component that will store data in the H2 dataBase.
 * service-registry - Eureka Server for registration and discovery of microservices.
@@ -46,11 +46,11 @@ Then afterwards import all the projects you will end up with the following compo
 
 After that, run all components as spring boot applications, you can test one microservice **http://localhost:8080/v1/api/products/findProductByCode/P001**
 in PostMan or in any web browser and if it works, you will visualize the response with data consulted with the catalog-service that retrieves 
-the information from the Mysql database and also consumes the inventory-service from an H2 database.
+the information from the Mysql database and also consumes the inventory-service that access to H2 database.
 Basically the essence of microservices architecture, distributed microservices working independently covering a specific business functionality,interacting 
 with other microservices.
 
-Also I used the tecnologies listed above to handle the most common problems that you can face when you are working with distributed applications, Eureka, Vault, Ribbon, Hystrix
+Also I used the tecnologies listed above to handle the most common problems that you can face when you are working with distributed applications.Eureka, Vault, Ribbon, Hystrix
 Sleuth and Zipkin will provide you with a lot of functionality to achive that.
 
 For more information and documentation check the **WIKI SECTION**.   

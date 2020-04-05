@@ -1,6 +1,6 @@
 package com.example.catalogservice.services;
 
-import com.example.catalogservice.dao.ProductInventoryDao;
+import com.example.catalogservice.dto.ProductInventoryDao;
 import com.example.catalogservice.entities.Product;
 import com.example.catalogservice.feignClients.InventoryRestClient;
 import com.example.catalogservice.repositories.ProductRepository;

@@ -1,6 +1,6 @@
 package com.example.catalogservice.feignClients;
 
-import com.example.catalogservice.dao.ProductInventoryDao;
+import com.example.catalogservice.dto.ProductInventoryDao;
 
 import com.example.catalogservice.util.InventoryClientFallBackMethod;
 import org.springframework.cloud.openfeign.FeignClient;

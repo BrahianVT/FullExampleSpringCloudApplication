@@ -5,6 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.config.server.EnableConfigServer;
 
+
+/**
+ *Config Service for more information check:
+ * https://github.com/BrahianVT/FullExampleSpringCloudApplication/wiki/3.-config-server
+ *
+ * @author  Brahian VT
+ *
+ */
 @SpringBootApplication
 @EnableConfigServer
 public class ConfigServerApplication {
