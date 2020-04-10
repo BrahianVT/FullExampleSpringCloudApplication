@@ -4,7 +4,10 @@ import com.example.catalogservice.entities.Product;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ Interface implemented by the ProductService class
+ @Author: Brahian Velazquez Tellez
+ **/
 public interface ProductServiceInterface {
     List<Product> findAllProducts();
     Optional<Product> findProductByCode(String code);

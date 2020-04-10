@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ Class to create the RestFul Api for the products
+ @Author: Brahian Velazquez Tellez
+ **/
 @RestController
 @RequestMapping("api/products")
 @Slf4j

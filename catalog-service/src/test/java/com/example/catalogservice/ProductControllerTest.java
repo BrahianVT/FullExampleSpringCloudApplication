@@ -31,6 +31,11 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.doReturn;
 
+
+/**
+    Class to implement unit tests for the Rest Api
+    @Author: Brahian Velazquez Tellez
+ **/
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {

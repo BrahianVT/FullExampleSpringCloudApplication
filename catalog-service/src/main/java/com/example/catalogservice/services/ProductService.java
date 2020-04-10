@@ -1,6 +1,6 @@
 package com.example.catalogservice.services;
 
-import com.example.catalogservice.dto.ProductInventoryDao;
+import com.example.catalogservice.dao.ProductInventoryDao;
 import com.example.catalogservice.entities.Product;
 import com.example.catalogservice.feignClients.InventoryRestClient;
 import com.example.catalogservice.repositories.ProductRepository;
@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ Class to add all the business functionality for the products
+ @Author: Brahian Velazquez Tellez
+ **/
 
 @Service
 @Transactional

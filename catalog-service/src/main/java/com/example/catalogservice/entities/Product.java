@@ -4,6 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ Entity for the products table, here there is
+ the @Data from Lombok to create automatically
+ getters and setters.
+ @Author: Brahian Velazquez Tellez
+ **/
 @Data
 @Entity
 @Table(name = "products")
