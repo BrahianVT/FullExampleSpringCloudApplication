@@ -14,7 +14,7 @@ import java.util.Optional;
 
 /**
  Class to create the RestFul Api of the inventory items
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 @RestController
 @Slf4j

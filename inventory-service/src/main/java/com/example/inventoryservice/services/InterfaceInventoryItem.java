@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 /**
  Interface implemented by the InventoryItemService class
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 
 public interface InterfaceInventoryItem {

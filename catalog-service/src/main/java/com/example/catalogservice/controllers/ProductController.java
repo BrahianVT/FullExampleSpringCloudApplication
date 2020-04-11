@@ -13,7 +13,7 @@ import java.util.Optional;
 
 /**
  Class to create the RestFul Api for the products
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 @RestController
 @RequestMapping("api/products")

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  A feign client to consume a microservice from the inventory-service
  here I also define a fallback method
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 
 @FeignClient(name = "inventory-service" , fallback = InventoryClientFallBackMethod.class)

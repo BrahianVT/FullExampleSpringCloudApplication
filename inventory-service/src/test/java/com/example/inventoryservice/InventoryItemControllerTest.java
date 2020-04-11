@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  Unit tests for the Inventory Rest Api
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 
 @RunWith(SpringRunner.class)

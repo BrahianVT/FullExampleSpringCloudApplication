@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 /**
  Class to add all the business functionality for the products
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 
 @Service

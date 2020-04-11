@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  Entity to map the table "inventory" in the H2 database
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 
 @Data

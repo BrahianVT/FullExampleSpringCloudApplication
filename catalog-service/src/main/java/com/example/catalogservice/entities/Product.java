@@ -8,7 +8,7 @@ import javax.persistence.*;
  Entity for the products table, here there is
  the @Data from Lombok to create automatically
  getters and setters.
- @Author: Brahian Velazquez Tellez
+ @author: Brahian Velazquez Tellez
  **/
 @Data
 @Entity

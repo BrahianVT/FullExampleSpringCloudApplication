@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ Fallback method the InventoryRestClient uses
+ @author: Brahian Velazquez Tellez
+ **/
 
 @Slf4j
 @Component
