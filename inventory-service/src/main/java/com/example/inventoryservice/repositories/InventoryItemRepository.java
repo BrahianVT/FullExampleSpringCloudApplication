@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ It is the repository that implements the JPA repository
+ to implement CRUD functionalities
+ @Author: Brahian Velazquez Tellez
+ **/
 @Repository
 public interface InventoryItemRepository extends JpaRepository<InventoryItem,Long> {
     Optional<InventoryItem> findByProductCode(String productCode);

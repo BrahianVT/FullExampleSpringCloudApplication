@@ -32,6 +32,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
+/**
+ Unit tests for the Inventory Rest Api
+ @Author: Brahian Velazquez Tellez
+ **/
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(InventoryItemController.class)
 public class InventoryItemControllerTest {

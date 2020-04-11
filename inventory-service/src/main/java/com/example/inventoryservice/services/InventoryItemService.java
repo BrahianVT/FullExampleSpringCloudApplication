@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ InventoryItemService to implement the business functionality
+ @Author: Brahian Velazquez Tellez
+ **/
 
 @Service
 @Transactional

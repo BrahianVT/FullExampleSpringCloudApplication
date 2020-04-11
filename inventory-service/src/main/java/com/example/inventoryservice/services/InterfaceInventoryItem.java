@@ -4,6 +4,10 @@ import com.example.inventoryservice.entities.InventoryItem;
 
 import java.util.List;
 import java.util.Optional;
+/**
+ Interface implemented by the InventoryItemService class
+ @Author: Brahian Velazquez Tellez
+ **/
 
 public interface InterfaceInventoryItem {
     Optional<InventoryItem> findByProductCode (String productCode);

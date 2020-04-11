@@ -4,6 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ Entity to map the table "inventory" in the H2 database
+ @Author: Brahian Velazquez Tellez
+ **/
 
 @Data
 @Entity

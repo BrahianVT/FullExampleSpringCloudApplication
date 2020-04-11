@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ Class to create the RestFul Api of the inventory items
+ @Author: Brahian Velazquez Tellez
+ **/
 @RestController
 @Slf4j
 @RequestMapping("api/inventory")
